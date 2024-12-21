@@ -60,6 +60,31 @@ impl Coordinates {
     pub fn manhattan_distance_to(&self, other: &Coordinates) -> i32 {
         (self.x - other.x).abs() + (self.y - other.y).abs()
     }
+
+    pub fn build_directions_to(&self, other: &Coordinates) -> Vec<Direction> {
+        let mut result: Vec<Direction> =
+            Vec::with_capacity(self.manhattan_distance_to(other) as usize);
+
+        let x_diff: i32 = other.x - self.x;
+        for _ in 0..x_diff.abs() {
+            if x_diff < 0 {
+                result.push(Direction::from_delta((-1, 0)))
+            } else {
+                result.push(Direction::from_delta((1, 0)))
+            }
+        }
+
+        let y_diff: i32 = other.y - self.y;
+        for _ in 0..y_diff.abs() {
+            if y_diff < 0 {
+                result.push(Direction::from_delta((0, -1)))
+            } else {
+                result.push(Direction::from_delta((0, 1)))
+            }
+        }
+
+        result
+    }
 }
 
 impl Debug for Coordinates {
