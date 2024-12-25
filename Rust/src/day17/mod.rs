@@ -6,7 +6,8 @@ mod solve;
 use crate::aoc::Aoc24Solution;
 use crate::day17::model::Computer;
 use crate::day17::parse::parse_input;
-use crate::day17::solve::{solve_part_one, solve_part_two};
+use crate::day17::reversed::solve_part_two;
+use crate::day17::solve::solve_part_one;
 use crate::toolbox::{Coordinates, Grid};
 
 #[derive(Default)]
@@ -29,6 +30,6 @@ impl Aoc24Solution for Day17 {
     }
 
     fn solve_part_two(&mut self, _is_test: bool) -> i128 {
-        solve_part_two(&self.computer)
+        solve_part_two(&self.computer) as i128
     }
 }
